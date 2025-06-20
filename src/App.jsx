@@ -10,7 +10,7 @@ function App() {
   const [count1, setCount1] = useState(0)
   const [count2, setCount2] = useState(0)
   const [count3, setCount3] = useState(0)
-  const [showPage, setShowPage] = useState("")
+  const [showPage, setShowPage] = useState("home")
 
 
   return (
@@ -18,15 +18,6 @@ function App() {
       <div>
         <Button handleClick={setCount} setShowPage={setShowPage} page={"home"}  >
           show home
-        </Button>
-        <Button handleClick={setCount1} setShowPage={setShowPage} page={"about"}  >
-          show about
-        </Button>
-        <Button handleClick={setCount2} setShowPage={setShowPage} page={"contact"}  >
-          show contact
-        </Button>
-        <Button handleClick={setCount3} setShowPage={setShowPage} page={""} >
-          disable
         </Button>
         {showPage === 'home' && <HomePage />}
         {showPage === 'about' && <AboutPage />}
