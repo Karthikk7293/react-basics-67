@@ -19,6 +19,7 @@ function App() {
         <Button handleClick={setCount} setShowPage={setShowPage} page={"home"}  >
           show home
         </Button>
+        <HomePage />
         {showPage === 'home' && <HomePage />}
         {showPage === 'about' && <AboutPage />}
         {showPage === 'contact' && <ContactPage />}
