@@ -1,16 +1,44 @@
 import React from 'react'
 
+const NavLink = [
+    {
+        url: "",
+        text: "Home"
+    },
+    {
+        url: "",
+        text: "About"
+    },
+    {
+        url: "",
+        text: "Contact"
+    },
+    {
+        url: "",
+        text: "Today Special"
+    },
+    {
+        url: "",
+        text: " Special"
+    },
+]
+
 const Header = () => {
     return (
-        <div className='w-full sm:bg-premier-blue h-20 border-2 border-red-700 md:bg-[#1ae096] flex justify-center items-center '>
-            <div className="text-3xl  h-full border flex items-center border-gray-900 text-center uppercase">
-                <p className=' '>logo</p>
+        <header className=' grid md:grid-cols-2 sm:grid-cols-[20%_80%] lg:grid-cols-2 xl:grid-cols-2 gap-5  w-full h-20 border-b-2 shadow-xl '>
+            <div className=' h-full  flex justify-around items-center  '>
+                <img className='w-16 ml-10 ' src="https://static.vecteezy.com/system/resources/previews/005/513/590/non_2x/catering-quality-food-design-premium-logo-vector.jpg" alt="" />
+                <h2 className='text-center  relative mx-auto w-fit text-2xl uppercase font-extrabold italic text-red-500 border'>swiggy!
+                    <span className='text-red-700 absolute text-[8px] -bottom-4 -left-10   '>everything is delicious</span>
+                </h2>
             </div>
-            <div className="flex w-full  h-full justify-evenly items-center text-center border border-green-700">
-                <a className='text-blue-600 w-fit px-4 py-1 capitalize hover:border hover:border-blue-600 hover:bg-blue-200 rounded-xl hover:shadow-xl  duration-700 ' href="">home</a>
-                <a className='text-blue-600 w-fit px-4 py-1 capitalize hover:border hover:border-blue-600 hover:bg-blue-200 rounded-xl hover:shadow-xl  duration-700' href="">about</a>
+            <div className=' h-full text-center flex justify-around items-center'>
+                {NavLink.map((item) => (
+                    <a key={item.text} className='text-red-400 hover:text-red-600   ' href={item.url}>{item.text}</a>
+                ))}
             </div>
-        </div>
+
+        </header>
     )
 }
 
