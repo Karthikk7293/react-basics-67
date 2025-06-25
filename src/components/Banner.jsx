@@ -38,8 +38,8 @@ const Banner = () => {
                     <TiSocialLinkedinCircular className='w-10 h-10  text-green-600' />
                 </div>
             </div>
-            <div className=" flex justify-center items-center ">
-                <img className='w-2/3' src="https://www.pngplay.com/wp-content/uploads/9/Meal-Transparent-Images.png" alt="" />
+            <div className=" flex justify-center items-center overflow-hidden ">
+                <img className='w-1/2 h-auto' src="https://www.pngplay.com/wp-content/uploads/9/Meal-Transparent-Images.png" alt="" />
             </div>
         </div>
     )
