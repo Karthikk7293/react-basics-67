@@ -1,29 +1,40 @@
 import React, { useEffect, useState } from 'react'
 
 function Component() {
-    const [state, setState] = useState(0);
-    const [name, setName] = useState("")
-    const [age, setAge] = useState(0)
-    const [unmount, setUnmount] = useState("border")
+    const [mount, setMount] = useState(false)
+    const [products, setProducts] = useState([])
 
     useEffect(() => {
-        console.log("logged");
+        if (mount) {
 
-
-        return () => {
-            console.log("the component is unmount");
+            fetch('https://fakestoreapi.com/products').then((response) => response.json()).then((result) => {
+                console.log({ result });
+                setProducts(result)
+            })
         }
 
-    }, [])
-
-    console.log({ state });
+    }, [mount])
 
 
     return (
-        <div className={`h-screen w-full border bg-slate-200 ${unmount} `}>
-            Component {state}
-            <br />
-            <button className='border rounded bg-red-600 w-32 py-2 text-white uppercase ' onClick={(() => setUnmount("hidden"))} >change state</button>
+        <div className={` w-full border bg-slate-200  `}>
+            <div className=" flex justify-center items-center  py-8">
+                <button className='border rounded bg-red-600 w-36 py-2 text-white uppercase ' onClick={(() => setMount(true))} >fetch products</button>
+            </div>
+            <div className='flex  flex-wrap gap-4 '>
+                {products?.map((item) => (
+                    <div key={item.id} className='border mx-auto border-gray-300 pt-2 rounded-lg shadow-lg w-[15rem] h-[20rem] overflow-hidden'>
+                        <img className='w-100 h-[10rem] object-contain' src={item.image} alt="" />
+                        <div className='p-4'>
+                            <h3 className='text-lg font-bold '>{item.title} </h3>
+                            {/* <p>{item.description}</p> */}
+                            <p> $ {item.price} </p>
+                            <p>Rating: <span>{item.rating.rate}</span> </p>
+                        </div>
+
+                    </div>
+                ))}
+            </div>
         </div>
 
     )
