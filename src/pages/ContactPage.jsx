@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 
-function Contact() {
+function ContactPage() {
     return (
         <div>Contact</div>
     )
 }
 
-export default Contact
+export default ContactPage
