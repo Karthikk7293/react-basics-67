@@ -15,12 +15,8 @@ const NavLink = [
         text: "Contact"
     },
     {
-        url: "",
-        text: "Today Special"
-    },
-    {
-        url: "",
-        text: " Special"
+        url: "products",
+        text: "Products"
     },
 ]
 

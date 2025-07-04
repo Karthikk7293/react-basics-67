@@ -7,6 +7,8 @@ import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import ProtectedRoute from './routes/ProtectedRoute'
 import LoginPage from './pages/LoginPage'
+import ProductDetailsPage from './pages/ProductDetails'
+import ProductsPage from './pages/ProductsPage'
 
 function App() {
 
@@ -17,6 +19,8 @@ function App() {
         <Route path='about' element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
         <Route path='contact' element={<ProtectedRoute><ContactPage /></ProtectedRoute>} />
         <Route path='login' element={<LoginPage />} />
+        <Route path='products' element={<ProductsPage />} />
+        <Route path='product/:productId' element={<ProductDetailsPage />} />
       </Route>
 
     </Routes>
