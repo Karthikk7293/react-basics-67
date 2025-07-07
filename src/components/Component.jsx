@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import ProductCard from './ProductCard'
 
 function Component() {
     const [mount, setMount] = useState(false)
@@ -23,16 +24,7 @@ function Component() {
             </div>
             <div className='flex  flex-wrap gap-4 '>
                 {products?.map((item) => (
-                    <div key={item.id} className='border mx-auto border-gray-300 pt-2 rounded-lg shadow-lg w-[15rem] h-[20rem] overflow-hidden'>
-                        <img className='w-100 h-[10rem] object-contain' src={item.image} alt="" />
-                        <div className='p-4'>
-                            <h3 className='text-lg font-bold '>{item.title} </h3>
-                            {/* <p>{item.description}</p> */}
-                            <p> $ {item.price} </p>
-                            <p>Rating: <span>{item.rating.rate}</span> </p>
-                        </div>
-
-                    </div>
+                    <ProductCard key={item?.id} image={item?.image} price={item?.price} title={item?.title} rate={item?.rating?.rate} />
                 ))}
             </div>
         </div>
