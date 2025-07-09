@@ -7,7 +7,7 @@ import { increment } from '../redux/slices/productSlice'
 function HomePage() {
 
     const dispatch = useDispatch()
-    const { count } = useSelector((state) => state.prdouct)
+    const { count } = useSelector((state) => state.product)
     console.log(count);
 
     const handleClick = () => {

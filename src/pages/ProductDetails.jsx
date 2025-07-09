@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { fetchProductDetails } from '../api/products'
+import { useDispatch, useSelector } from 'react-redux'
 
 function ProductDetailsPage() {
 
-    const [productDetails, setProductDetails] = useState(null)
+    const dispatch = useDispatch()
+    const { productDetails, productDetailsLoading } = useSelector(state => state.product)
 
     const { productId } = useParams()
 
     useEffect(() => {
 
-        fetchProductDetails(productId).then((result) => {
-            setProductDetails(result)
-        })
+        dispatch(fetchProductDetails(productId))
 
     }, [productId])
 
 
-    if (!productDetails) {
+    if (productDetailsLoading) {
         return (
             <div className='flex justify-center items-center w-full h-screen text-4xl'>
                 loading...
@@ -32,10 +32,10 @@ function ProductDetailsPage() {
                     <img className='w-1/2' src={productDetails?.image} alt="" />
                 </div>
                 <div className='w-1/2 flex flex-col gap-3 bg-white p-3  h-full justify-around '>
-                    <p className='text-xl text-green-500'>{productDetails.title}</p>
-                    <p>$ {productDetails.price}</p>
-                    <p>{productDetails.rating.rate} {productDetails.rating.count}</p>
-                    <p>{productDetails.description}</p>
+                    <p className='text-xl text-green-500'>{productDetails?.title}</p>
+                    <p>$ {productDetails?.price}</p>
+                    <p>{productDetails?.rating?.rate} {productDetails?.rating?.count}</p>
+                    <p>{productDetails?.description}</p>
                 </div>
 
             </div>

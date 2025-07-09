@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { fetchProducts } from '../api/products'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 function ProductsPage() {
 
-    const [products, setProducts] = useState([])
+    const dispatch = useDispatch()
+
+    const { products, loading, error } = useSelector((state) => state.product)
 
     useEffect(() => {
+        if (products.length === 0) {
 
-        (async () => {
-            const data = await fetchProducts()
-            setProducts(data)
-        })()
+            dispatch(fetchProducts())
+        }
 
-    }, [])
+    }, [products])
 
-    console.log({ products });
 
-    if (products.length === 0) {
+    if (loading) {
         return (
             <div className='w-full h-screen flex justify-center items-center text-5xl'>
                 loading...
