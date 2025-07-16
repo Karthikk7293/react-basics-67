@@ -4,6 +4,9 @@ import { fetchProductDetails, fetchProducts } from "../../api/products";
 const initialState = {
     count: 0,
     products: [],
+    paginatedProducts: [],
+    currentPage: 1,
+    productsPerPage: 5,
     productDetails: {},
     loading: false,
     productDetailsLoading: false,
@@ -22,7 +25,17 @@ const productSlice = createSlice({
             state.count = action.payload
         },
         reset: (state) => {
-            state.count = 0
+            state.currentPage = 1
+        },
+        setPage: (state, action) => {
+            state.currentPage = action.payload
+            const start = (state.currentPage - 1) * state.productsPerPage // page =1 0, page=2 1
+            const end = start + state.productsPerPage
+            // console.log({ start, end });
+            state.paginatedProducts = state.products.slice(start, end)
+        },
+        priceSort: (state) => {
+            state.products = state.products.sort((a, b) => b.price - a.price)
         }
     },
     extraReducers: (builder) => {
@@ -32,6 +45,8 @@ const productSlice = createSlice({
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
             state.loading = false
             state.products = action.payload
+            state.currentPage = 1
+            state.paginatedProducts = state.products.slice(0, state.productsPerPage)
         })
         builder.addCase(fetchProducts.rejected, (state, action) => {
             state.loading = false
@@ -54,5 +69,5 @@ const productSlice = createSlice({
 
 })
 
-export const { increment, decrement, reset } = productSlice.actions
+export const { increment, decrement, reset, setPage, priceSort } = productSlice.actions
 export default productSlice.reducer
