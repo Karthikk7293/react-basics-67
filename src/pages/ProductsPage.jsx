@@ -41,7 +41,7 @@ function ProductsPage() {
             <img className='w-10 h-10' width={100} height={100} src={image} alt="" />
             <button onClick={(() => dispatch(priceSort()))} className='border bg-green-600'>sort</button>
             <button className='border bg-red-600 text-white' onClick={(() => dispatch(setPage(currentPage + 1)))}>count {currentPage}</button>
-            {products.map((item) => (
+            {paginatedProducts.map((item) => (
                 <Link to={`/product/${item.id}`} key={item.id} className="border w-[18rem] bg-white shadow-lg rounded-lg h-[30rem] my-3 overflow-hidden p-2 flex flex-col gap-2 ">
                     <img className='w-full h-auto' src={item.image} alt="" />
                     <p>{item.title}</p>
