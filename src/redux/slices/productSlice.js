@@ -8,6 +8,7 @@ const initialState = {
     currentPage: 1,
     productsPerPage: 5,
     productDetails: {},
+    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null,
     loading: false,
     productDetailsLoading: false,
     error: null
@@ -36,6 +37,9 @@ const productSlice = createSlice({
         },
         priceSort: (state) => {
             state.products = state.products.sort((a, b) => b.price - a.price)
+        },
+        setUser: (state, action) => {
+            state.user = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -69,5 +73,5 @@ const productSlice = createSlice({
 
 })
 
-export const { increment, decrement, reset, setPage, priceSort } = productSlice.actions
+export const { increment, decrement, reset, setPage, priceSort, setUser } = productSlice.actions
 export default productSlice.reducer

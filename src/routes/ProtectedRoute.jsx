@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom'
 
 
 const isLoggedIn = () => {
-    return localStorage.getItem("status")
+    return localStorage.getItem("token")
 
 }
 

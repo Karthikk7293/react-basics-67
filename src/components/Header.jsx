@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link, Navigate } from 'react-router-dom'
 
 const NavLink = [
@@ -22,6 +23,8 @@ const NavLink = [
 
 const Header = () => {
 
+    const user = useSelector((state) => state.product.user)
+
     const handleClick = () => {
         localStorage.setItem('status', JSON.stringify(true))
     }
@@ -38,6 +41,7 @@ const Header = () => {
                 {NavLink.map((item) => (
                     <Link key={item.text} className='text-red-400 hover:text-red-600   ' children={item.text} to={item.url} />
                 ))}
+                <p>{user?.name}</p>
             </div>
 
         </header>

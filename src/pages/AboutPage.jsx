@@ -1,16 +1,49 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { setUser } from '../redux/slices/productSlice'
 
 function AboutPage() {
     const { count } = useSelector((state) => state.product)
     const [image, setImage] = useState(null)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+
+    const getUserDetails = async () => {
+        try {
+
+            const token = localStorage.getItem('token')
+
+            const { data } = await axios.get('http://localhost:3000/api/users/profile',
+                {
+                    headers: {
+                        "Authorization": `Bearer ${JSON.parse(token)}`
+                    }
+                }
+            )
+            dispatch(setUser(data?.data?.user))
+
+
+        } catch (error) {
+            console.log(error);
+            if (error?.response?.data?.error?.message === 'invalid token' && error.status == 403) {
+                localStorage.removeItem('token')
+                localStorage.removeItem('user')
+                dispatch(setUser(null))
+                navigate('/login')
+            }
+
+        }
+    }
 
     useEffect(() => {
         const data = localStorage.getItem('imageFile')
         if (data) {
             setImage(data)
         }
-
+        getUserDetails()
     }, [])
 
 

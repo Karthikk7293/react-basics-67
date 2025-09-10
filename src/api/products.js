@@ -6,6 +6,8 @@ import axios from "axios";
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
     try {
 
+        // const token = localStorage.getItem('token')
+
         const { data } = await axios.get('https://fakestoreapi.com/products')
 
         return data
