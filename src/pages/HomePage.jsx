@@ -1,14 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../components/Header'
 import Component from '../components/Component'
 import { useDispatch, useSelector } from 'react-redux'
 import { increment } from '../redux/slices/productSlice'
+import axios from 'axios';
+
 
 function HomePage() {
 
     const dispatch = useDispatch()
     const { count } = useSelector((state) => state.product)
     console.log(count);
+
+    const fetchDish = async () => {
+        try {
+
+            fetch('https://dummyjson.com/comments')
+                .then(res => res.json())
+                .then(console.log);
+
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+    useEffect(() => {
+        fetchDish()
+    }, [])
+
 
     const handleClick = () => {
         dispatch(increment(100))
