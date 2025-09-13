@@ -12,7 +12,7 @@ function LoginPage() {
         e.preventDefault()
 
         try {
-            const { data } = await axios.post('http://localhost:3000/api/users/login', userData)
+            const { data } = await axios.post('https://backend-basics-67.vercel.app/api/users/login', userData)
             if (data?.success) {
                 // console.log(data);
 
